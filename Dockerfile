@@ -7,7 +7,7 @@ RUN wget -O /tmp/freetds.tar.gz http://www.freetds.org/files/stable/freetds-patc
  && sed -i '95i#endif' ./src/tds/tls.c \
  && sed -i '96i' ./src/tds/tls.c \
  && sed -i '97i#ifndef TLS_ST_OK' ./src/tds/tls.c \
- && sed -i '41d;43d' ./src/apps/fisql/fisql.c \
+ && sed -i '28i#include <sys/stat.h>' ./src/apps/fisql/fisql.c \
  && apk --no-cache add build-base libressl-dev linux-headers readline-dev unixodbc-dev \
  && ./configure \
 		--build=$CBUILD \
