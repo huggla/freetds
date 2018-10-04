@@ -4,6 +4,7 @@ RUN wget -O /tmp/freetds.tar.gz http://www.freetds.org/files/stable/freetds-patc
  && cd /tmp \
  && tar -xvp -f freetds.tar.gz \
  && cd freetds-1.00.103 \
+ && apk --no-cache add libressl-dev linux-headers readline-dev unixodbc-dev \
  && ./configure \
 		--build=$CBUILD \
 		--host=$CHOST \
