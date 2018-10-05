@@ -1,7 +1,7 @@
 FROM huggla/alpine-official:20181005-edge as alpine
 
 ARG BUILDDEPS="build-base libressl-dev linux-headers readline-dev unixodbc-dev libtool"
-ARG RUNDEPS="unixodbc"
+ARG RUNDEPS="libressl2.7-libssl unixodbc"
 
 RUN downloadDir="$(mktemp -d)" \
  && wget -O $downloadDir/freetds.tar.gz "http://www.freetds.org/files/stable/freetds-patched.tar.gz" \
@@ -24,7 +24,7 @@ RUN downloadDir="$(mktemp -d)" \
  && mv $destDir/usr/include $destDir-dev/usr/ \
  && mv $destDir/usr/lib/*.so $destDir/usr/lib/*.a $destDir-dev/usr/lib/ \
  && rm -rf $destDir/usr/share \
- && echo "$RUNDEPS" > /apps/RUNDEPS
+ && echo "$RUNDEPS" > /apps/RUNDEPS-freetds
 
 FROM scratch as image
 
