@@ -16,7 +16,7 @@ RUN downloadDir="$(mktemp -d)" \
  && destDir="/freetds" \
  && mkdir -p $destDir/freetds $destDir/freetds-dev/usr/lib \
  && make -j1 DESTDIR="$destDir" install \
- && rm $buildDir \
+ && rm -rf $buildDir \
  && mv $destDir/freetds/usr/include $destDir/freetds-dev/usr/ \
  && mv $destDir/freetds/usr/lib/*.so $destDir/freetds/usr/lib/*.a $destDir/freetds-dev/usr/lib/ \
  && rm -rf $destDir/freetds/usr/share
