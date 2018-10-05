@@ -26,4 +26,4 @@ RUN downloadDir="$(mktemp -d)" \
 
 FROM scratch as image
 
-COPY /apps /
+COPY --from=alpine /apps /
