@@ -17,7 +17,7 @@ RUN downloadDir="$(mktemp -d)" \
  && sed -i '28i#include <sys/stat.h>' ./src/apps/fisql/fisql.c \
  && ./configure --prefix=/usr --sysconfdir=/etc --mandir=/usr/share/man --infodir=/usr/share/info --enable-msdblib --with-openssl=/usr --enable-odbc --with-unixodbc=/usr \
  && make \
- && mkdir -p $DESTDIR $DESTDIR-dev/usr/lib \
+ && mkdir -p $DESTDIR-dev/usr/lib \
  && make -j1 install \
  && rm -rf $buildDir \
  && apk --no-cache --purge del $BUILDDEPS \
