@@ -1,4 +1,4 @@
-FROM huggla/alpine-official:20181005-edge as alpine
+FROM huggla/alpine-official:20181017-edge as alpine
 
 ARG BUILDDEPS="build-base libressl-dev linux-headers readline-dev unixodbc-dev libtool"
 ARG RUNDEPS="libressl2.7-libssl unixodbc"
