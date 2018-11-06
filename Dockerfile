@@ -28,6 +28,6 @@ RUN downloadDir="$(mktemp -d)" \
  && rm -rf $DESTDIR/usr/share \
  && echo "$RUNDEPS" > /apps/RUNDEPS-freetds
 
-FROM scratch as image
+FROM huggla/busybox:$TAG as image
 
 COPY --from=alpine /apps /
