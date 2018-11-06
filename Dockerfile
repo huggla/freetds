@@ -4,10 +4,11 @@ FROM huggla/alpine-official:$TAG as alpine
 
 ARG BUILDDEPS="build-base libressl-dev linux-headers readline-dev unixodbc-dev libtool"
 ARG RUNDEPS="libressl2.7-libssl unixodbc"
+ARG FREETDS_VERSION="1.00.103"
 ARG DESTDIR="/apps/freetds"
 
 RUN downloadDir="$(mktemp -d)" \
- && wget -O $downloadDir/freetds.tar.gz "http://www.freetds.org/files/stable/freetds-patched.tar.gz" \
+ && wget -O $downloadDir/freetds.tar.gz "http://www.freetds.org/files/stable/freetds-$FREETDS_VERSION.tar.gz" \
  && buildDir="$(mktemp -d)" \
  && tar -xvp -f $downloadDir/freetds.tar.gz -C $buildDir --strip-components 1 \
  && rm -rf $downloadDir \
