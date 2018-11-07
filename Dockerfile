@@ -5,6 +5,6 @@ FROM huggla/alpine-official:$TAG as alpine
 
 ARG RUNDEPS="libressl2.7-libssl unixodbc"
 
-COPY --from=freetds /apps/freetds /
+COPY --from=freetds /freetds /
 
 RUN apk --no-cache add $RUNDEPS
