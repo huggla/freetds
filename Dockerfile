@@ -2,7 +2,7 @@ ARG TAG="20181106-edge"
 
 FROM huggla/alpine-official:$TAG as alpine
 
-ARG BUILDDEPS="build-base libressl-dev linux-headers readline-dev unixodbc-dev libtool"
+ARG BUILDDEPS="build-base libressl-dev linux-headers readline-dev unixodbc-dev libtool gettext"
 ARG RUNDEPS="libressl2.7-libssl unixodbc"
 ARG FREETDS_VERSION="patched"
 ARG DESTDIR=""
@@ -21,14 +21,14 @@ RUN downloadDir="$(mktemp -d)" \
  && ./configure --prefix=/usr --sysconfdir=/etc --mandir=/usr/share/man --infodir=/usr/share/info --enable-msdblib --with-openssl=/usr --enable-odbc --with-unixodbc=/usr \
  && make \
  && mkdir -p /freetds-dev/usr/lib \
- && find / > /pre \
+ && find /usr/* > /usr-pre \
  && make -j1 install \
- && find / > /post \
- && diff /pre /post > /diff \
+ && find /usr/* > /usr-post \
+ && diff /usr-pre /usr-post > /diff \
  && rm -rf $buildDir \
  && apk --no-cache --purge del $BUILDDEPS \
- && apk --no-cache add $RUNDEPS \
- && mv $DESTDIR/usr/include /freetds-dev/usr/ \
- && mv $DESTDIR/usr/lib/*.so $DESTDIR/usr/lib/*.a /freetds-dev/usr/lib/ \
- && rm -rf $DESTDIR/usr/share
+ && apk --no-cache add $RUNDEPS
+# && mv $DESTDIR/usr/include /freetds-dev/usr/ \
+# && mv $DESTDIR/usr/lib/*.so $DESTDIR/usr/lib/*.a /freetds-dev/usr/lib/ \
+# && rm -rf $DESTDIR/usr/share
 # && echo "$RUNDEPS" > /apps/RUNDEPS-freetds
