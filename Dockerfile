@@ -5,7 +5,7 @@ FROM huggla/alpine-official:$TAG as alpine
 ARG BUILDDEPS="build-base libressl-dev linux-headers readline-dev unixodbc-dev libtool"
 ARG RUNDEPS="libressl2.7-libssl unixodbc"
 ARG FREETDS_VERSION="patched"
-ARG DESTDIR=""
+ARG DESTDIR="/freetds"
 
 RUN downloadDir="$(mktemp -d)" \
  && wget -O $downloadDir/freetds.tar.gz "http://www.freetds.org/files/stable/freetds-$FREETDS_VERSION.tar.gz" \
