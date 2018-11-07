@@ -4,7 +4,7 @@ FROM huggla/alpine-official:$TAG as alpine
 
 ARG BUILDDEPS="build-base libressl-dev linux-headers readline-dev unixodbc-dev libtool"
 ARG RUNDEPS="libressl2.7-libssl unixodbc"
-ARG FREETDS_VERSION="1.00.103"
+ARG FREETDS_VERSION="patched"
 ARG DESTDIR=""
 
 RUN downloadDir="$(mktemp -d)" \
