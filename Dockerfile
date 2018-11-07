@@ -21,7 +21,9 @@ RUN downloadDir="$(mktemp -d)" \
  && ./configure --prefix=/usr --sysconfdir=/etc --mandir=/usr/share/man --infodir=/usr/share/info --enable-msdblib --with-openssl=/usr --enable-odbc --with-unixodbc=/usr \
  && make \
  && mkdir -p /freetds-dev/usr/lib \
+ && find /usr/* > /pre.txt \
  && make -j1 install \
+ && find /usr/* > /post.txt \
  && rm -rf $buildDir \
  && apk --no-cache --purge del $BUILDDEPS \
  && apk --no-cache add $RUNDEPS \
