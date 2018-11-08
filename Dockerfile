@@ -1,4 +1,4 @@
-ARG TAG="20181106-edge"
+ARG TAG="20181108-edge"
 
 FROM huggla/alpine-official:$TAG as alpine
 
@@ -12,7 +12,7 @@ RUN downloadDir="$(mktemp -d)" \
  && buildDir="$(mktemp -d)" \
  && tar -xvp -f $downloadDir/freetds.tar.gz -C $buildDir --strip-components 1 \
  && rm -rf $downloadDir \
- && apk --no-cache add $BUILDDEPS \
+ && apk add $BUILDDEPS \
  && cd $buildDir \
  && sed -i '95i#endif' ./src/tds/tls.c \
  && sed -i '96i' ./src/tds/tls.c \
@@ -23,7 +23,7 @@ RUN downloadDir="$(mktemp -d)" \
  && mkdir -p $DESTDIR-dev/usr/lib \
  && make -j1 install \
  && rm -rf $buildDir \
- && apk --no-cache --purge del $BUILDDEPS \
+ && apk --purge del $BUILDDEPS \
  && mv $DESTDIR/usr/include $DESTDIR-dev/usr/ \
  && mv $DESTDIR/usr/lib/*.so $DESTDIR/usr/lib/*.a $DESTDIR-dev/usr/lib/ \
  && rm -rf $DESTDIR/usr/share \
