@@ -3,4 +3,4 @@ Freetds-files for Alpine. COPY contents of /apps/freetds and/or /apps/freetds-de
 
 20181204: Freetds 1.00.109, Alpine edge.
 
-20190129: Freetds 1.00.111, Alpine edge.
+20190129-20190206: Freetds 1.00.111, Alpine edge.
