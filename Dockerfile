@@ -1,6 +1,6 @@
-ARG TAG="20190220"
+ARG TAG="20190503"
 
-FROM huggla/alpine-official as alpine
+FROM huggla/alpine as alpine
 
 ARG BUILDDEPS="build-base libressl-dev linux-headers readline-dev unixodbc-dev libtool gettext"
 ARG RUNDEPS="libressl2.7-libssl unixodbc"
